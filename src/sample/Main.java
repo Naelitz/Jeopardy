@@ -32,8 +32,8 @@ public class Main extends Application {
         background.fitHeightProperty().bind(scene.heightProperty());
         primaryStage.show();
 
-        top.tButton.onActionProperty(e -> {
-            TeacherWindow.display(this);
+        top.tButton.setOnAction(e -> {
+            displayTeacherWindow();
         });
     }
 
@@ -41,4 +41,6 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+    void displayTeacherWindow(){ TeacherWindow.display(this);}
 }
