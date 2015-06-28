@@ -17,9 +17,13 @@ public class Main extends Application {
     BorderPane border = new BorderPane();
     ImageView background = new ImageView();
     Image jeopardy = new Image("jeopardy.jpg");
-    Top top = new Top();
+    Top top;
+    TeacherWindow tWindow;
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception
+    {
+        top = new Top(this);
+        tWindow = new TeacherWindow();
         // Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Jeopardy");
         background.setImage(jeopardy);
@@ -33,6 +37,7 @@ public class Main extends Application {
         primaryStage.show();
 
         top.tButton.setOnAction(e -> {
+            System.out.println("clicked");
             displayTeacherWindow();
         });
     }
@@ -42,5 +47,5 @@ public class Main extends Application {
         launch(args);
     }
 
-    void displayTeacherWindow(){ TeacherWindow.display(this);}
+    void displayTeacherWindow(){ tWindow.display(this);}
 }

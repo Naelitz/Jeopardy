@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,8 +23,12 @@ public class Top extends HBox
     Button sButton = new Button();
     Button tButton = new Button();
 
-    Top()
+    Main main;
+
+    Top(Main main)
     {
+        this.main = main;
+        this.prefWidthProperty().bind(main.background.fitWidthProperty());
         iv1.setImage(student);
         iv2.setImage(teacher);
         this.getChildren().add(stack1);
@@ -34,6 +39,8 @@ public class Top extends HBox
         sButton.setOpacity(0);
         stack2.getChildren().add(iv2);
         stack2.getChildren().add(tButton);
+        tButton.prefWidthProperty().bind(iv2.fitWidthProperty());
+        tButton.prefHeightProperty().bind(iv2.fitHeightProperty());
         tButton.setOpacity(0);
 
     }

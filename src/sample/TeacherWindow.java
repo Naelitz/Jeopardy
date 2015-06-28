@@ -16,17 +16,19 @@ import javafx.stage.Stage;
  */
 public class TeacherWindow
 {
-    public static void display(Main main)
+    BorderPane layout = new BorderPane();
+    GridPane center = new GridPane();
+    Tiles[][] tiles = new Tiles[6][5];
+    public void display(Main main)
     {
 
-        BorderPane layout = new BorderPane();
         layout.setStyle("-fx-background-color: #000000");
-        GridPane center = new GridPane();
+
         for(int i = 0; i < 6 ; i++)
         {
             for (int j = 0; j < 5; j++)
             {
-                center.add(new Tiles(), i, j);
+                center.add(tiles[i][j] = new Tiles(this), i, j);
             }
         }
         center.setHgap(5);
@@ -35,9 +37,16 @@ public class TeacherWindow
         layout.setCenter(center);
 
         Stage window = new Stage();
+        window.setFullScreen(true);
 
 
         Scene scene = new Scene(layout, 800, 800);
+        //layout.prefWidthProperty().bind(scene.widthProperty());
+        //layout.prefHeightProperty().bind(scene.heightProperty());
+        center.prefHeight(800);
+        center.maxHeight(800);
+        center.prefWidth(800);
+        center.maxWidth(800);
         window.setScene(scene);
         window.showAndWait();
     }

@@ -14,12 +14,14 @@ public class Tiles extends StackPane
     Rectangle box = new Rectangle();
     Label text = new Label();
     Button button = new Button();
-    Tiles()
+    Tiles(TeacherWindow window)
     {
         this.getChildren().addAll(box, text, button);
         button.setOpacity(0);
-        box.setWidth(100);
-        box.setHeight(100);
+        box.widthProperty().bind(window.center.widthProperty().divide(6));
+        box.heightProperty().bind(window.center.heightProperty().divide(5));
+        //box.setWidth(100);
+        //box.setHeight(100);
         box.setStyle("-fx-fill:#0033CC");
         box.setArcHeight(20);
         box.setArcWidth(20);
