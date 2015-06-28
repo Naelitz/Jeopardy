@@ -28,7 +28,7 @@ public class TeacherWindow
         {
             for (int j = 0; j < 5; j++)
             {
-                center.add(tiles[i][j] = new Tiles(this), i, j);
+                center.add(tiles[i][j] = new Tiles(this, main), i, j);
             }
         }
         center.setHgap(5);
