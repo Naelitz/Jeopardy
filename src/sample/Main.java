@@ -19,6 +19,7 @@ public class Main extends Application {
     Image jeopardy = new Image("jeopardy.jpg");
     Top top;
     TeacherWindow tWindow;
+    Controller info = new Controller();
     @Override
     public void start(Stage primaryStage) throws Exception
     {
@@ -48,4 +49,9 @@ public class Main extends Application {
     }
 
     void displayTeacherWindow(){ tWindow.display(this);}
+
+    Controller getInfo()
+    {
+        return info;
+    }
 }

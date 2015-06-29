@@ -20,10 +20,8 @@ public class Tiles extends StackPane
         this.main = main;
         this.getChildren().addAll(box, text, button);
         button.setOpacity(0);
-        box.widthProperty().bind(window.center.widthProperty().divide(6));
-        box.heightProperty().bind(window.center.heightProperty().divide(5));
-        //box.setWidth(100);
-        //box.setHeight(100);
+        box.widthProperty().bind(window.center.widthProperty().divide(main.getInfo().columns));
+        box.heightProperty().bind(window.center.heightProperty().divide(main.getInfo().rows));
         box.setStyle("-fx-fill:#0033CC");
         box.setArcHeight(20);
         box.setArcWidth(20);
