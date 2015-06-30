@@ -32,21 +32,28 @@ public class TeacherWindow
     public void display(Main main)
     {
         this.main = main;
-        tiles = new Tiles[main.getInfo().rows][main.getInfo().columns];
+        // Creates an array of tiles equal to the amount of rows and columns (1 by default)
+        this.tiles = new Tiles[main.getInfo().rows][main.getInfo().columns];
 
+        // Black background to have blue tiles on black background.
         layout.setStyle("-fx-background-color: #000000");
 
+        // Places all the tiles on the screen
         for(int i = 0; i < main.getInfo().columns ; i++)
         {
             for (int j = 0; j < main.getInfo().rows; j++)
             {
-                center.add(tiles[i][j] = new Tiles(this, main, i , j), i, j);
+                // Adds new tile and passes it the row and column location.
+                center.add(this.tiles[i][j] = new Tiles(this, main, i , j), i, j);
+                tiles[i][j].getLocation();
             }
         }
         center.setHgap(5);
         center.setVgap(5);
 
         layout.setCenter(center);
+        // Sets up top menu bar to choose size of question grid. Then devides nodes into 4 equal sizes
+        // based on the width of the pane.
         layout.setTop(pane);
         Label text = new Label("Number of rows?");
         ComboBox row = new ComboBox<Integer>();
@@ -64,25 +71,30 @@ public class TeacherWindow
         btn.prefWidthProperty().bind(pane.widthProperty().divide(5));
         pane.setStyle("-fx-background-color: #B2B2CC");
 
+
         Stage window = new Stage();
-        //window.setFullScreen(true);
+        window.setFullScreen(true);
 
 
         row.getItems().addAll(1, 2, 3, 4);
+        column.getItems().addAll(1, 2, 3, 4);
 
         row.setVisibleRowCount(10);
 
         btn.setOnAction(e -> {
-            layout.getChildren().removeAll(center);
-            center.getChildren().removeAll();
+            this.layout.getChildren().removeAll(center);
+            this.center.getChildren().removeAll();
             main.getInfo().setRows((int)row.getValue());
+            main.getInfo().setColumns((int)row.getValue());
             System.out.println(main.getInfo().rows);
             this.tiles = new Tiles[main.getInfo().columns][main.getInfo().rows];
             for(int i = 0; i < main.getInfo().columns ; i++)
             {
                 for (int j = 0; j < main.getInfo().rows; j++)
                 {
-                    this.center.add(tiles[i][j] = new Tiles(this, main, i , j), i, j);
+                    this.center.add(this.tiles[i][j] = new Tiles(this, main, i , j), i, j);
+                    this.tiles[i][j].prefWidthProperty().bind(center.widthProperty().divide(main.getInfo().rows));
+                    this.tiles[i][j].getLocation();
                     System.out.println("working");
                 }
             }
@@ -92,10 +104,10 @@ public class TeacherWindow
 
 
         Scene scene = new Scene(layout, 800, 800);
-        center.prefHeight(800);
-        center.maxHeight(800);
-        center.prefWidth(800);
-        center.maxWidth(800);
+        this.center.prefHeightProperty().bind(layout.heightProperty());
+        this.center.maxHeight(800);
+        this.center.prefWidthProperty().bind(layout.widthProperty());
+        this.center.maxWidth(800);
         window.setScene(scene);
         window.show();
     }

@@ -2,6 +2,8 @@ package sample;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.BlendMode;
+import javafx.scene.effect.Effect;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
@@ -15,23 +17,38 @@ public class Tiles extends StackPane
     Label text = new Label();
     Button button = new Button();
     Main main;
+    int row;
+    int column;
     Tiles(TeacherWindow window, Main main, int row, int column)
     {
         this.main = main;
+        this.row = row;
+        this.column = column;
         this.getChildren().addAll(box, text, button);
         button.setOpacity(0);
-        box.widthProperty().bind(window.center.widthProperty().divide(main.getInfo().columns));
-        box.heightProperty().bind(window.center.heightProperty().divide(main.getInfo().rows));
-        box.setStyle("-fx-fill:#0033CC");
-        box.setArcHeight(20);
-        box.setArcWidth(20);
-        button.prefWidthProperty().bind(box.widthProperty());
-        button.prefHeightProperty().bind(box.heightProperty());
-        button.setOnAction(e -> {
-           Questions quest = new Questions(main, row, column);
+        this.prefWidthProperty().bind(window.center.heightProperty().divide(main.getInfo().columns));
+        this.prefHeightProperty().bind(window.center.heightProperty().divide(main.getInfo().rows));
+
+        this.box.widthProperty().bind(this.widthProperty());
+        this.box.heightProperty().bind(this.heightProperty());
+        this.box.setStyle("-fx-fill:#0033CC");
+        this.box.setArcHeight(20);
+        this.box.setArcWidth(20);
+        this.button.prefWidthProperty().bind(box.widthProperty());
+        this.button.prefHeightProperty().bind(box.heightProperty());
+
+        this.box.setBlendMode(BlendMode.LIGHTEN);
+
+        this.button.setOnAction(e -> {
+            Questions quest = new Questions(main, row, column);
             quest.display();
 
         });
+    }
+
+    void getLocation()
+    {
+        System.out.printf("%d and %d", row, column);
     }
 }
 
