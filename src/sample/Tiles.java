@@ -26,8 +26,8 @@ public class Tiles extends StackPane
         this.column = column;
         this.getChildren().addAll(box, text, button);
         button.setOpacity(0);
-        this.prefWidthProperty().bind(window.center.heightProperty().divide(main.getInfo().columns));
-        this.prefHeightProperty().bind(window.center.heightProperty().divide(main.getInfo().rows));
+        //this.prefWidthProperty().bind(window.center.heightProperty().divide(main.getInfo().columns));
+        //this.prefHeightProperty().bind(window.center.heightProperty().divide(main.getInfo().rows));
 
         this.box.widthProperty().bind(this.widthProperty());
         this.box.heightProperty().bind(this.heightProperty());

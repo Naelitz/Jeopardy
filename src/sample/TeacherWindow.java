@@ -76,8 +76,8 @@ public class TeacherWindow
         window.setFullScreen(true);
 
 
-        row.getItems().addAll(1, 2, 3, 4);
-        column.getItems().addAll(1, 2, 3, 4);
+        row.getItems().addAll(1, 2, 3, 4, 5, 6, 7, 8);
+        column.getItems().addAll(1, 2, 3, 4, 5, 6, 7, 8);
 
         row.setVisibleRowCount(10);
 
@@ -93,7 +93,8 @@ public class TeacherWindow
                 for (int j = 0; j < main.getInfo().rows; j++)
                 {
                     this.center.add(this.tiles[i][j] = new Tiles(this, main, i , j), i, j);
-                    this.tiles[i][j].prefWidthProperty().bind(center.widthProperty().divide(main.getInfo().rows));
+                    this.tiles[i][j].prefWidthProperty().bind(center.widthProperty().divide(main.getInfo().columns));
+                    this.tiles[i][j].prefHeightProperty().bind(center.heightProperty().divide(main.getInfo().rows));
                     this.tiles[i][j].getLocation();
                     System.out.println("working");
                 }

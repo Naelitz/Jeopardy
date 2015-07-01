@@ -31,6 +31,7 @@ public class Top extends HBox
         this.prefWidthProperty().bind(main.background.fitWidthProperty());
         iv1.setImage(student);
         iv2.setImage(teacher);
+        //iv2.OnMouseClicked(main.tWindow.display(main));
         this.getChildren().add(stack1);
         this.getChildren().add(stack2);
 
