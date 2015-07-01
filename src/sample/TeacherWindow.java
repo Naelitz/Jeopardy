@@ -82,15 +82,16 @@ public class TeacherWindow
         row.setVisibleRowCount(10);
 
         btn.setOnAction(e -> {
+            main.getInfo().update((int)row.getValue(), (int)column.getValue());
             this.layout.getChildren().removeAll(center);
             this.center.getChildren().removeAll();
             main.getInfo().setRows((int)row.getValue());
-            main.getInfo().setColumns((int)row.getValue());
+            main.getInfo().setColumns((int)column.getValue());
             System.out.println(main.getInfo().rows);
-            this.tiles = new Tiles[main.getInfo().columns][main.getInfo().rows];
-            for(int i = 0; i < main.getInfo().columns ; i++)
+            this.tiles = new Tiles[main.getInfo().rows][main.getInfo().columns];
+            for(int i = 0; i < main.getInfo().rows ; i++)
             {
-                for (int j = 0; j < main.getInfo().rows; j++)
+                for (int j = 0; j < main.getInfo().columns; j++)
                 {
                     this.center.add(this.tiles[i][j] = new Tiles(this, main, i , j), i, j);
                     this.tiles[i][j].prefWidthProperty().bind(center.widthProperty().divide(main.getInfo().columns));

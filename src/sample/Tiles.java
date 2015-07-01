@@ -6,7 +6,10 @@ import javafx.scene.effect.BlendMode;
 import javafx.scene.effect.Effect;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 /**
  * Created by david_000 on 6/26/2015.
@@ -34,14 +37,23 @@ public class Tiles extends StackPane
         this.box.setStyle("-fx-fill:#0033CC");
         this.box.setArcHeight(20);
         this.box.setArcWidth(20);
-        this.button.prefWidthProperty().bind(box.widthProperty());
-        this.button.prefHeightProperty().bind(box.heightProperty());
+        this.button.prefWidthProperty().bind(this.widthProperty());
+        this.button.prefHeightProperty().bind(this.heightProperty());
 
         this.box.setBlendMode(BlendMode.LIGHTEN);
 
+        this.text.setFont(Font.font(64));
+        this.text.setStyle("-fx-font-weight: BOLD");
+        this.text.setTextFill(Color.WHITE);
+
         this.button.setOnAction(e -> {
-            Questions quest = new Questions(main, row, column);
-            quest.display();
+            if (column == 0) {
+                LabelTile label = new LabelTile(main, row, column);
+                label.display();
+            } else {
+                Questions quest = new Questions(window, main, row, column);
+                quest.display();
+            }
 
         });
     }

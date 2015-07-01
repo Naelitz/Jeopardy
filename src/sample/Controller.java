@@ -5,8 +5,10 @@ public class Controller
     String[][] questions;
     int rows = 1;
     int columns = 1;
+
     Controller()
     {
+        questions = new String[rows][columns];
 
     }
 
@@ -17,7 +19,12 @@ public class Controller
 
     void setColumns(int c)
     {
-        columns = c;
+        this.columns = c;
+    }
+
+    void update(int rows, int columns)
+    {
+        questions = new String[rows][columns];
     }
 
 
