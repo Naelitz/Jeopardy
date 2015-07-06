@@ -57,7 +57,7 @@ public class TeacherWindow
         layout.setTop(pane);
         Label text = new Label("Number of rows?");
         ComboBox row = new ComboBox<Integer>();
-        ComboBox column = new ComboBox<>();
+        ComboBox column = new ComboBox<Integer>();
         Label text2 = new Label("Number of columns?");
         pane.add(text, 0, 0);
         text.prefWidthProperty().bind(pane.widthProperty().divide(5));
