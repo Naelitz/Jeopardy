@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 public class Questions
 {
     TextField text = new TextField("Enter Point Amount");
+    TextField question = new TextField("Enter Question Here");
     Stage stage = new Stage();
     int rowLocation;
     int columnLocation;
@@ -26,9 +27,8 @@ public class Questions
         GridPane pane = new GridPane();
         pane.add(text, 0, 0);
         pane.add(apply, 1, 0);
-        //pane.getChildren().add(apply);
-        //apply.setAlignment(Pos.CENTER_RIGHT);
-        //text.setAlignment(Pos.CENTER);
+        pane.add(question, 0, 1);
+
 
         Scene scene = new Scene(pane, pane.getWidth(), pane.getHeight());
 
@@ -38,7 +38,8 @@ public class Questions
         apply.setOnAction(e -> {
             window.tiles[row][column].text.setText(text.getText());
            // main.getInfo().questions
-            main.getInfo().questions[row][column] = text.getText();
+            main.getInfo().questions[row][column] = question.getText();
+
         });
     }
 

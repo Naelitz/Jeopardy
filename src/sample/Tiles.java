@@ -48,7 +48,7 @@ public class Tiles extends StackPane
 
         this.button.setOnAction(e -> {
             if (column == 0) {
-                LabelTile label = new LabelTile(main, row, column);
+                LabelTile label = new LabelTile(main,this, row, column);
                 label.display();
             } else {
                 Questions quest = new Questions(window, main, row, column);

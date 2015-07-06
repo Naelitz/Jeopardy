@@ -3,12 +3,14 @@ package sample;
 public class Controller
 {
     String[][] questions;
-    int rows = 1;
-    int columns = 1;
+    int rows = 0;
+    int columns = 0;
+    String[] categories;
 
     Controller()
     {
         questions = new String[rows][columns];
+        categories = new String[columns];
 
     }
 
@@ -25,7 +27,9 @@ public class Controller
     void update(int rows, int columns)
     {
         questions = new String[rows][columns];
+        categories = new String[columns];
     }
+
 
 
 }
