@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 /**
@@ -37,6 +38,7 @@ public class Questions
 
         apply.setOnAction(e -> {
             window.tiles[row][column].text.setText(text.getText());
+            window.tiles[row][column].text.setTextFill(Paint.valueOf("#FFAD33"));
            // main.getInfo().questions
             main.getInfo().questions[row][column] = question.getText();
 

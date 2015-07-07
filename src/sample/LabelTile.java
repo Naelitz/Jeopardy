@@ -35,6 +35,7 @@ public class LabelTile
             tile.text.setText(this.text.getText());
             main.getInfo().categories[column] = this.text.getText();
 
+
         });
     }
 
