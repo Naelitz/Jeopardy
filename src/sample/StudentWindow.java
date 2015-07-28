@@ -4,9 +4,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.io.*;
 
 /**
  * Created by root on 7/28/15.
@@ -19,6 +23,7 @@ public class StudentWindow extends Main
         GridPane center = new GridPane();
         StudentTiles[][] tiles;
         Main main;
+        Stage stage;
         Button btn = new Button("Set Up");
         public void display(Main main)
         {
@@ -35,15 +40,15 @@ public class StudentWindow extends Main
                 for (int j = 0; j < main.getInfo().columns; j++)
                 {
                     // Adds new tile and passes it the row and column location.
-                    center.add(this.tiles[j][i] = new StudentTiles(this, main, i , j), i, j);
-                    if(i == 0)
+                    center.add(this.tiles[j][i] = new StudentTiles(this, main, i, j), i, j);
+                   /* if(i == 0)
                     {
                         this.tiles[j][i].text.setText(main.getInfo().categories[j]);
                     }
                     else
                     {
                         this.tiles[j][i].text.setText(main.getInfo().points[i][j]);
-                    }
+                    }*/
                     this.tiles[j][i].prefWidthProperty().bind(center.widthProperty().divide(main.getInfo().columns));
                     this.tiles[j][i].prefHeightProperty().bind(center.heightProperty().divide(main.getInfo().rows));
                     //main.tWindow.tiles[j][i].getLocation();
@@ -69,7 +74,37 @@ public class StudentWindow extends Main
             this.center.maxWidth(800);
             window.setScene(scene);
             window.show();
+            fileChooser();
+
         }
+
+    void fileChooser() throws IOException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose Character Image");
+        File file = fileChooser.showOpenDialog(stage);
+        if (file != null)
+        {
+            try(DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(file))))
+            {
+                for (int i = 0; i < main.getInfo().rows; i++) {
+                    for (int j = 0; j < main.getInfo().columns; j++) {
+
+                        if (i == 0) {
+                            main.getInfo().categories[j]= in.readChar();
+                        } else {
+                            in.readChar(main.getInfo().questions[i][j]);
+                            in.readChar(main.getInfo().answers[i][j]);
+                        }
+                    }
+                }
+            }catch(IOException ex){
+                ex.printStackTrace();
+            };
+
+
+
+        }
+    }
     }
 
 

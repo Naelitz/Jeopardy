@@ -13,6 +13,10 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.BufferedOutputStream;
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -26,9 +30,12 @@ public class TeacherWindow extends Main
     BorderPane layout = new BorderPane();
     GridPane pane = new GridPane();
     GridPane center = new GridPane();
+    GridPane bottom = new GridPane();
+    TextField title = new TextField("Enter File Name Here");
     Tiles[][] tiles;
     Main main;
     Button btn = new Button("Set Up");
+    Button saveBtn = new Button("Save");
     public void display(Main main)
     {
         this.main = main;
@@ -71,6 +78,13 @@ public class TeacherWindow extends Main
         btn.prefWidthProperty().bind(pane.widthProperty().divide(5));
         pane.setStyle("-fx-background-color: #B2B2CC");
 
+        layout.setBottom(bottom);
+        bottom.add(title, 0, 0);
+        title.setStyle("-fx-background-color: #6666FF");
+        bottom.add(saveBtn, 1, 0);
+        saveBtn.setStyle("-fx-background-color: #6666FF");
+        saveBtn.setPrefWidth(125);
+
 
         Stage window = new Stage();
         window.setFullScreen(true);
@@ -82,18 +96,16 @@ public class TeacherWindow extends Main
         row.setVisibleRowCount(10);
 
         btn.setOnAction(e -> {
-            main.getInfo().update((int)row.getValue(), (int)column.getValue());
+            main.getInfo().update((int) row.getValue(), (int) column.getValue());
             this.layout.getChildren().removeAll(center);
             this.center.getChildren().removeAll();
-            main.getInfo().setRows((int)row.getValue());
-            main.getInfo().setColumns((int)column.getValue());
+            main.getInfo().setRows((int) row.getValue());
+            main.getInfo().setColumns((int) column.getValue());
             System.out.println(main.getInfo().rows);
             this.tiles = new Tiles[main.getInfo().rows][main.getInfo().columns];
-            for(int i = 0; i < main.getInfo().rows ; i++)
-            {
-                for (int j = 0; j < main.getInfo().columns; j++)
-                {
-                    this.center.add(this.tiles[i][j] = new Tiles(this, main, i , j), i, j);
+            for (int i = 0; i < main.getInfo().rows; i++) {
+                for (int j = 0; j < main.getInfo().columns; j++) {
+                    this.center.add(this.tiles[i][j] = new Tiles(this, main, i, j), i, j);
                     this.tiles[i][j].prefWidthProperty().bind(center.widthProperty().divide(main.getInfo().columns));
                     this.tiles[i][j].prefHeightProperty().bind(center.heightProperty().divide(main.getInfo().rows));
                     this.tiles[i][j].getLocation();
@@ -101,6 +113,27 @@ public class TeacherWindow extends Main
                 }
             }
             layout.getChildren().add(center);
+
+
+        });
+
+        saveBtn.setOnAction(e -> {
+            try (DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(title.getText() + ".dat")))) {
+                for (int i = 0; i < main.getInfo().rows; i++) {
+                    for (int j = 0; j < main.getInfo().columns; j++) {
+                        out.writeChars(tiles[i][j].text.getText());
+                        if (i == 0) {
+                            out.writeChars(main.getInfo().categories[j]);
+                        } else {
+                            out.writeChars(main.getInfo().questions[i][j]);
+                            out.writeChars(main.getInfo().answers[i][j]);
+                        }
+                    }
+                }
+            } catch (IOException d) {
+                d.printStackTrace();
+            }
+            System.out.println("Yup");
         });
 
 
