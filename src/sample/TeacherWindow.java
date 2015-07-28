@@ -21,7 +21,7 @@ import java.util.ListIterator;
 /**
  * Created by david_000 on 6/26/2015.
  */
-public class TeacherWindow
+public class TeacherWindow extends Main
 {
     BorderPane layout = new BorderPane();
     GridPane pane = new GridPane();

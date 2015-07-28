@@ -39,6 +39,27 @@ public class LabelTile
         });
     }
 
+    LabelTile(Main main,StudentTiles tile, int row, int column)
+    {
+        this.rowLocation = row;
+        this.columnLocation = column;
+        Pane pane = new Pane();
+        pane.getChildren().add(text);
+        pane.getChildren().add(submit);
+        text.setAlignment(Pos.CENTER);
+
+        Scene scene = new Scene(pane, 600, 200);
+        stage.setScene(scene);
+        stage.show();
+
+        submit.setOnAction(e -> {
+            tile.text.setText(this.text.getText());
+            main.getInfo().categories[column] = this.text.getText();
+
+
+        });
+    }
+
     void display()
     {
         this.stage.show();

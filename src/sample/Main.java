@@ -19,12 +19,16 @@ public class Main extends Application {
     Image jeopardy = new Image("jeopardy.jpg");
     Top top;
     TeacherWindow tWindow;
+    StudentWindow sWindow;
     Controller info = new Controller();
+    public Questions[][] tiles;
+
     @Override
     public void start(Stage primaryStage) throws Exception
     {
         top = new Top(this);
         tWindow = new TeacherWindow();
+        sWindow = new StudentWindow();
         // Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Jeopardy");
         background.setImage(jeopardy);
@@ -41,6 +45,10 @@ public class Main extends Application {
             System.out.println("clicked");
             displayTeacherWindow();
         });
+
+        top.sButton.setOnAction(e -> {
+            displayStudentWindow();
+        });
     }
 
 
@@ -49,6 +57,8 @@ public class Main extends Application {
     }
 
     void displayTeacherWindow(){ tWindow.display(this);}
+
+    void displayStudentWindow(){ sWindow.display(this);}
 
     Controller getInfo()
     {

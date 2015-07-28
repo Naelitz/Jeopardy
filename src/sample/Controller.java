@@ -3,6 +3,9 @@ package sample;
 public class Controller
 {
     String[][] questions;
+    String[][] answers;
+    String[][] points;
+
     int rows = 0;
     int columns = 0;
     String[] categories;
@@ -11,6 +14,8 @@ public class Controller
     {
         questions = new String[rows][columns];
         categories = new String[columns];
+        answers = new String[rows][columns];
+        points = new String[rows][columns];
 
     }
 
@@ -28,6 +33,8 @@ public class Controller
     {
         questions = new String[rows][columns];
         categories = new String[columns];
+        answers = new String[rows][columns];
+        points = new String[rows][columns];
     }
 
 

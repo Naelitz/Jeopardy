@@ -3,18 +3,15 @@ package sample;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BlendMode;
-import javafx.scene.effect.Effect;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 
 /**
- * Created by david_000 on 6/26/2015.
+ * Created by root on 7/28/15.
  */
-public class Tiles extends StackPane
+public class StudentTiles extends StackPane
 {
     Rectangle box = new Rectangle();
     Label text = new Label();
@@ -22,7 +19,7 @@ public class Tiles extends StackPane
     Main main;
     int row;
     int column;
-    Tiles(TeacherWindow window, Main main, int row, int column)
+    StudentTiles(StudentWindow window, Main main, int row, int column)
     {
         this.main = main;
         this.row = row;
@@ -48,21 +45,12 @@ public class Tiles extends StackPane
 
         this.button.setOnAction(e -> {
             if (column == 0) {
-                LabelTile label = new LabelTile(main,this, row, column);
-                label.display();
+
             } else {
-                Questions quest = new Questions(window, main, row, column);
-                quest.display();
+                StudentQuestion sQuestion = new StudentQuestion(this, row, column);
+                sQuestion.display();
             }
 
         });
     }
-
-
-
-    void getLocation()
-    {
-        System.out.printf("%d and %d", row, column);
-    }
 }
-
