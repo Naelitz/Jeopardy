@@ -17,6 +17,7 @@ public class Questions
 {
     TextField text = new TextField("Enter Point Amount");
     TextField question = new TextField("Enter Question Here");
+    TextField answer = new TextField("Enter Answer Here");
     Stage stage = new Stage();
     int rowLocation;
     int columnLocation;
