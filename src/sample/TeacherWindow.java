@@ -13,10 +13,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.io.BufferedOutputStream;
-import java.io.DataOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -118,22 +115,46 @@ public class TeacherWindow extends Main
         });
 
         saveBtn.setOnAction(e -> {
-            try (DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(title.getText() + ".dat")))) {
-                for (int i = 0; i < main.getInfo().rows; i++) {
-                    for (int j = 0; j < main.getInfo().columns; j++) {
-                        out.writeChars(tiles[i][j].text.getText());
-                        if (i == 0) {
-                            out.writeChars(main.getInfo().categories[j]);
-                        } else {
-                            out.writeChars(main.getInfo().questions[i][j]);
-                            out.writeChars(main.getInfo().answers[i][j]);
+            BufferedWriter writer = null;
+            try
+            {
+                writer = new BufferedWriter( new FileWriter( title.getText() + ".txt"));
+                //writer.write( yourstring);
+
+                for (int i = 0; i < main.getInfo().rows; i++)
+                {
+                    for (int j = 0; j < main.getInfo().columns; j++)
+                    {
+                        writer.write(tiles[i][j].text.getText());
+                        if (i == 0)
+                        {
+                            writer.write(main.getInfo().categories[j]);
+                        } else
+                        {
+                            writer.write(main.getInfo().questions[i][j]);
+                            writer.write(main.getInfo().answers[i][j]);
                         }
                     }
                 }
-            } catch (IOException d) {
+
+            }
+            catch ( IOException d)
+            {
                 d.printStackTrace();
             }
-            System.out.println("Yup");
+            finally
+            {
+                try
+                {
+                    if ( writer != null)
+                        writer.close( );
+                }
+                catch ( IOException d)
+                {
+                }
+            }
+
+
         });
 
 

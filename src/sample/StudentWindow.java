@@ -40,17 +40,17 @@ public class StudentWindow extends Main
                 for (int j = 0; j < main.getInfo().columns; j++)
                 {
                     // Adds new tile and passes it the row and column location.
-                    center.add(this.tiles[j][i] = new StudentTiles(this, main, i, j), i, j);
-                   /* if(i == 0)
+                    center.add(this.tiles[i][j] = new StudentTiles(this, main, i, j), i, j);
+                    if(j == 0)
                     {
-                        this.tiles[j][i].text.setText(main.getInfo().categories[j]);
+                        this.tiles[i][j].text.setText(main.getInfo().categories[i]);
                     }
                     else
                     {
-                        this.tiles[j][i].text.setText(main.getInfo().points[i][j]);
-                    }*/
-                    this.tiles[j][i].prefWidthProperty().bind(center.widthProperty().divide(main.getInfo().columns));
-                    this.tiles[j][i].prefHeightProperty().bind(center.heightProperty().divide(main.getInfo().rows));
+                        this.tiles[i][j].text.setText(main.getInfo().points[i][j]);
+                    }
+                    this.tiles[i][j].prefWidthProperty().bind(center.widthProperty().divide(main.getInfo().columns));
+                    this.tiles[i][j].prefHeightProperty().bind(center.heightProperty().divide(main.getInfo().rows));
                     //main.tWindow.tiles[j][i].getLocation();
 
                 }
@@ -74,11 +74,11 @@ public class StudentWindow extends Main
             this.center.maxWidth(800);
             window.setScene(scene);
             window.show();
-            fileChooser();
+            //fileChooser();
 
         }
 
-    void fileChooser() throws IOException {
+  /*  void fileChooser() throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose Character Image");
         File file = fileChooser.showOpenDialog(stage);
@@ -86,12 +86,16 @@ public class StudentWindow extends Main
         {
             try(DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(file))))
             {
-                for (int i = 0; i < main.getInfo().rows; i++) {
-                    for (int j = 0; j < main.getInfo().columns; j++) {
+                for (int i = 0; i < main.getInfo().rows; i++)
+                {
+                    for (int j = 0; j < main.getInfo().columns; j++)
+                    {
 
-                        if (i == 0) {
+                        if (i == 0)
+                        {
                             main.getInfo().categories[j]= in.readChar();
-                        } else {
+                        } else
+                        {
                             in.readChar(main.getInfo().questions[i][j]);
                             in.readChar(main.getInfo().answers[i][j]);
                         }
@@ -104,7 +108,9 @@ public class StudentWindow extends Main
 
 
         }
-    }
+
+
+    }*/
     }
 
 

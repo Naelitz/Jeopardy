@@ -32,7 +32,7 @@ public class Controller
     void update(int rows, int columns)
     {
         questions = new String[rows][columns];
-        categories = new String[columns];
+        categories = new String[rows];
         answers = new String[rows][columns];
         points = new String[rows][columns];
     }

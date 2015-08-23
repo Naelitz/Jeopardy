@@ -5,6 +5,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
@@ -24,6 +27,13 @@ public class StudentQuestion
 
     StudentQuestion(StudentTiles tile, int row, int column)
     {
+        winnerLbl.setTextFill(Color.ANTIQUEWHITE);
+        winnerLbl.setFont(Font.font(36));
+
+        question.setText(tile.main.getInfo().questions[row][column]);
+        question.setTextFill(Color.FLORALWHITE);
+        question.setFont(Font.font(38));
+
         pane.setStyle("-fx-background-color: #0000CC");
         pane.getChildren().add(grid);
         grid.add(question, 0, 0, 3, 1);
