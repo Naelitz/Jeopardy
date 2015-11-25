@@ -90,7 +90,8 @@ public class TeacherWindow extends Main
         row.getItems().addAll(1, 2, 3, 4, 5, 6, 7, 8);
         column.getItems().addAll(1, 2, 3, 4, 5, 6, 7, 8);
 
-        row.setVisibleRowCount(10);
+        row.setVisibleRowCount(8);
+        column.setVisibleRowCount(8);
 
         btn.setOnAction(e -> {
             main.getInfo().update((int) row.getValue(), (int) column.getValue());
@@ -166,5 +167,6 @@ public class TeacherWindow extends Main
         this.center.maxWidth(800);
         window.setScene(scene);
         window.show();
+        window.requestFocus();
     }
 }

@@ -11,10 +11,13 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
+import java.io.Serializable;
+
 /**
  * Created by david_000 on 6/26/2015.
  */
 public class Tiles extends StackPane
+                    implements Serializable
 {
     Rectangle box = new Rectangle();
     Label text = new Label();
